@@ -1,0 +1,20 @@
+#importação dos pacotes que serão usados no game
+import requests
+import random
+
+#criando a minha variável que vai fazer a requisição da minha lista  de linguagens
+url = 'https://raw.githubusercontent.com/guilhermeonrails/api-imersao-ia/main/words.json'
+resposta = requests.get(url)
+data = resposta.json()
+
+valor_secreto = random.choice(data)
+palavra_secrete = valor_secreto['palavra']
+dica_secreta = valor_secreto['dica']
+print(f'O nome da linguagem tem {len(palavra_secrete)}, letras!')
+print(f'A dica é {dica_secreta}')
+chute = input('Seu palpite é: ')
+
+if chute == palavra_secrete:
+  print('PARABÉNS! VC ACERTOU!')
+else:
+  print(f'ERROU! A LINGUAGEM ERA: {palavra_secrete}')
